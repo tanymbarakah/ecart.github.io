@@ -329,12 +329,14 @@ function filterByPrice() {
     const maxPrice = parseFloat(document.getElementById('max-price').value);
 
     const filteredProducts = products.filter(product => {
-        const productPrice = product.price;
-        return (isNaN(minPrice) || productPrice >= minPrice) && (isNaN(maxPrice) || productPrice <= maxPrice);
+        const productPrice = parseFloat(product.price); // Parse product price as a float
+        // Check if the product price is within the specified range
+        return (!isNaN(minPrice) && productPrice >= minPrice) && (!isNaN(maxPrice) && productPrice <= maxPrice);
     });
 
     displayProducts(filteredProducts);
 }
+
 
 // Initialize product display
 displayProducts(products);
